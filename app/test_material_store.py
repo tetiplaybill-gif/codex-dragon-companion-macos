@@ -77,7 +77,9 @@ class MaterialStoreTests(unittest.TestCase):
             from sustained_assets import profile_paths
             self.assertEqual(DesktopPet.asset_path(SimpleNamespace(asset_root=root),{'file':'quality/action.webp'}),asset)
             item=dict(file='quality/action.webp',sustained=dict(start=0,end=2,sourceFrames=5,seamFrames=2,seamFile='quality/action.webp'))
-            self.assertEqual(profile_paths(root,item)['source'],asset)
+            # Canonicalize the OS temp-directory alias without invoking the
+            # mocked final-name alias above (macOS /var -> /private/var).
+            self.assertEqual(profile_paths(root,item)['source'],original(asset))
     def test_download_verify_commit_and_progress(self):
         events=[];root=self.store.ensure('hd',progress=lambda n,t,p:events.append((n,t,p)),opener=lambda *a:self.response(self.archive()))
         self.assertTrue(self.store.available('hd'));self.assertEqual(self.store.current,'light')

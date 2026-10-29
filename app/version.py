@@ -1,4 +1,4 @@
 VERSION = '1.0.1'
 
-# macOS community preview; upstream data compatibility remains VERSION.
-DISPLAY_VERSION = VERSION + '-mac.2-preview.1'
+# Cross-platform source preview; upstream data compatibility remains VERSION.
+DISPLAY_VERSION = VERSION + '-community.2-preview.1'

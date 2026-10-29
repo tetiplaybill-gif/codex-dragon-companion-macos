@@ -249,6 +249,18 @@ def connect_unix(paths):
         except OSError:sock.close()
     raise OSError('IPC socket unavailable')
 
+def windows_default_pipe_allowed():
+    """The global Windows pipe cannot identify a custom Codex data profile.
+
+    Keep log-based monitoring of custom homes independent from the default
+    desktop router. An explicit override resolving to the default home is fine.
+    Do not open the pipe or load Windows APIs just to determine this boundary.
+    """
+    from pathlib import Path
+    from codex_connection import data_home
+    try:return data_home()==(Path.home()/'.codex').resolve()
+    except (OSError,RuntimeError,ValueError):return False
+
 class LiveStatusReader(threading.Thread):
     def __init__(self,stop,emit,emit_waiting=None,emit_activity=None,emit_terminal=None):
         super().__init__(name='BailongCodexLifecycle',daemon=True);self.stop_event=stop;self.emit=emit;self.emit_waiting=emit_waiting
@@ -269,6 +281,10 @@ class LiveStatusReader(threading.Thread):
     def run(self):
         if MACOS:return self._run_unix()
         if os.name!='nt':self.set_health('unavailable','ipc_disconnected');return
+        if not windows_default_pipe_allowed():
+            self.connected=False
+            self.set_health('degraded','ipc_disconnected')
+            return  # The owner's independent log loop keeps its stop event.
         from ctypes import wintypes
         import msvcrt
         peek=ctypes.WinDLL('kernel32',use_last_error=True).PeekNamedPipe

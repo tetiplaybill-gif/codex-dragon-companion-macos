@@ -4,7 +4,7 @@
 
 ## 固定构建输入
 
-源码仓库为 [tetiplaybill-gif/codex-dragon-companion-macos](https://github.com/tetiplaybill-gif/codex-dragon-companion-macos)，请从 `main` 获取源码；当前源码版本为 `1.0.1-mac.2-preview.1`。
+源码仓库为 [tetiplaybill-gif/codex-dragon-companion-macos](https://github.com/tetiplaybill-gif/codex-dragon-companion-macos)，请从 `main` 获取源码；当前源码版本为 `1.0.1-community.2-preview.1`。本文只介绍 Mac，Windows 请看 [Windows 源码运行](WINDOWS.md)。
 
 本地验证构建采用 [Astral python-build-standalone 20261026](https://github.com/astral-sh/python-build-standalone/releases/tag/20261026) 提供的 **CPython 3.12.16 / aarch64-apple-darwin**：
 

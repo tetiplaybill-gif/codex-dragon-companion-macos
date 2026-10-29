@@ -1,0 +1,12 @@
+# Default Windows x64 / CPython 3.12 source-run dependencies. WebP animation needs no FFmpeg.
+# Official PyPI wheel SHA-256 and license scope: docs/windows-dependencies.json.
+--index-url https://pypi.org/simple
+--only-binary :all:
+--require-hashes
+
+PySide6-Essentials==6.9.2 --hash=sha256:b2f746f795138ac63eb173f9850a6db293461a1b6ce22cf6dafac7d194a38951
+shiboken6==6.9.2 --hash=sha256:68c33d565cd4732be762d19ff67dfc53763256bac413d392aa8598b524980bc4
+pillow==12.0.0 --hash=sha256:9fe611163f6303d1619bbcb653540a4d60f9e55e622d60a3108be0d5b441017a
+psutil==7.0.0 --hash=sha256:4cf3d4eb1aa9b348dec30105c55cd9b7d4629285735a102beb4441e38db90553
+msgspec==0.22.0 --hash=sha256:6ad64f5c260866b0d543f89f50cee43628989c1433c5de7ce820281fa28a2611
+comtypes==1.4.17 --hash=sha256:4e0a221dde2c589b82977bed802efd71cd5eb67a380347b732e02735e597f586

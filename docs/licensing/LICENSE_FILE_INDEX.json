@@ -2387,6 +2387,48 @@
       "scope": "bundled_text_or_sanitized_public_metadata"
     },
     {
+      "component": "windows-source-dependency-license",
+      "file": "app/licenses/windows-source-dependencies/PROVENANCE.json",
+      "sha256": "ac4a1bf2d41baf083033ec24beaae4a7b2a28b3e2889ed86da5b738693227ac4",
+      "bytes": 3907,
+      "scope": "Source-run documentation only; executable redistribution is not claimed."
+    },
+    {
+      "component": "windows-source-dependency-license",
+      "file": "app/licenses/windows-source-dependencies/README.md",
+      "sha256": "fef93d9036fcb86af023b57ef9ec45ea336bb944abe079a99884d4ad80ef1989",
+      "bytes": 2193,
+      "scope": "Source-run documentation only; executable redistribution is not claimed."
+    },
+    {
+      "component": "windows-source-dependency-license",
+      "file": "app/licenses/windows-source-dependencies/comtypes-1.4.17/LICENSE.txt",
+      "sha256": "3b1767f010980b46926b23bf0afce5d72f3359ee5e2b27baca71b9b4209ab383",
+      "bytes": 1273,
+      "scope": "Source-run documentation only; executable redistribution is not claimed."
+    },
+    {
+      "component": "windows-source-dependency-license",
+      "file": "app/licenses/windows-source-dependencies/imageio-ffmpeg-0.6.0/GPL-3.0.txt",
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+      "bytes": 35147,
+      "scope": "Source-run documentation only; executable redistribution is not claimed."
+    },
+    {
+      "component": "windows-source-dependency-license",
+      "file": "app/licenses/windows-source-dependencies/imageio-ffmpeg-0.6.0/LICENSE",
+      "sha256": "eca73421d0c905a92e952a553d4d58919c5a507c2c2c76e3c0cf9ba408c299e4",
+      "bytes": 1317,
+      "scope": "Source-run documentation only; executable redistribution is not claimed."
+    },
+    {
+      "component": "windows-source-dependency-license",
+      "file": "app/licenses/windows-source-dependencies/imageio-ffmpeg-0.6.0/UPSTREAM_BINARY_README.md",
+      "sha256": "b0d36dfb1ba1ea5ca873a6f6dbcc2295b7a7944aea875071d91a6aad1870e77d",
+      "bytes": 45,
+      "scope": "Source-run documentation only; executable redistribution is not claimed."
+    },
+    {
       "component": "altgraph-0.17.5",
       "file": "docs/licensing/build-tools/altgraph-0.17.5/LICENSE",
       "sha256": "6c194d6db0c64d45535d10c95142b9b0cda7b7dcc7f1ddee302b3d536f3dbe46",

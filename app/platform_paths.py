@@ -14,6 +14,7 @@ def local_appdata():
     value=os.environ.get('LOCALAPPDATA')
     if value:return Path(value)
     if MACOS:return Path.home()/'Library/Application Support'
+    if WINDOWS:return Path.home()/'AppData/Local'
     return Path.home()
 
 def data_dir():return local_appdata()/APP_ID
@@ -31,7 +32,8 @@ def install_root():return local_appdata()/'Programs'/APP_ID
 
 def startup_folder():
     """Windows per-user Startup folder; macOS uses a LaunchAgent instead."""
-    return Path(os.environ['APPDATA'])/'Microsoft/Windows/Start Menu/Programs/Startup'
+    roaming=Path(os.environ['APPDATA']) if os.environ.get('APPDATA') else Path.home()/'AppData/Roaming'
+    return roaming/'Microsoft/Windows/Start Menu/Programs/Startup'
 
 def launch_agents():
     # LOCALAPPDATA is only set on macOS to isolate tests/QA; keep their agents out of the real login.
@@ -62,8 +64,10 @@ def launch_agent_args(path):
     return value.get('ProgramArguments') if isinstance(value,dict) and value.get('RunAtLoad') is True else None
 
 def background_python():
-    """Interpreter for detached helpers: pythonw on Windows, the current one elsewhere."""
-    return Path(sys.executable).with_name('pythonw.exe') if WINDOWS else Path(sys.executable)
+    """Prefer Windows pythonw when installed; portable runtimes may omit it."""
+    executable=Path(sys.executable)
+    windowless=executable.with_name('pythonw.exe')
+    return windowless if WINDOWS and windowless.is_file() else executable
 
 def app_root():
     """Folder holding app/ and outputs/: the source tree, the Windows install folder, or a macOS bundle's Resources."""

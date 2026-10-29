@@ -178,27 +178,51 @@ class WorkerTests(unittest.TestCase):
             self.assertEqual(failed['run_id'],later)
             self.assertEqual(events[-1],dict(kind='token_busy',busy=False,run_id=later))
     def test_reset_cached_snapshot_never_completes_manual_refresh(self):
-        with tempfile.TemporaryDirectory() as folder,patch('enhanced.STATE_DIR',Path(folder)):
-            worker=ResetThread();worker.tracker=Mock(snapshot={'checked':1})
+        from public_announcements import FetchResult
+        with tempfile.TemporaryDirectory() as folder, \
+                patch('urllib.request.build_opener',side_effect=AssertionError('no network')):
+            checked=time.time()
+            old=dict(id='10001',text='Earlier public announcement',published=checked-1,
+                     kind='reset',url='https://codex-resets.com/',implementation='reported_completed')
+            provider=SimpleNamespace(id='codex_resets',label='Offline fixture',available=True,
+                allowed_hosts={'codex-resets.com'},attribution_url='https://codex-resets.com/',
+                fetch=Mock(return_value=FetchResult([old],'"cached"')))
+            worker=ResetThread(state_dir=folder,providers=[provider])
+            cached,alerts=worker.monitor.poll(now=checked)
+            self.assertEqual(alerts,[])
+            self.assertGreater(cached['next_check'],time.time())
+            self.assertTrue((Path(folder)/'public-announcements.json').is_file())
             started=threading.Event();release=threading.Event();ready=[];done=[]
             worker.ready.connect(lambda *args:ready.append(args))
             worker.completed.connect(lambda *args:done.append(args))
-            def fetch():
-                started.set();release.wait(2);return {}
-            with patch('enhanced.fetch_feed',side_effect=fetch),patch.object(worker.tracker,'update',return_value=({'checked':2},[])):
+            def fetch(**kwargs):
+                started.set()
+                if not release.wait(3):raise TimeoutError('test did not release provider')
+                return FetchResult([dict(old,id='10002',published=checked)],'"fresh"')
+            with patch.object(provider,'fetch',side_effect=fetch) as fetched:
+                run=worker.request_refresh()
                 worker.start()
                 try:
-                    self.assertTrue(started.wait(1))
-                    run=worker.request_refresh();self.assertEqual(worker.request_refresh(),run)
+                    self.assertTrue(started.wait(2))
+                    self.assertEqual(worker.request_refresh(),run)
                     APP.processEvents()
-                    self.assertTrue(ready);self.assertFalse(ready[0][2]);self.assertEqual(done,[])
+                    # A valid, persisted cache remains readable while the forced
+                    # provider request is blocked. It is not a terminal result.
+                    self.assertEqual(worker.monitor.snapshot()['sources'][0]['items'][0]['id'],'10001')
+                    self.assertEqual(ready,[]);self.assertEqual(done,[])
+                    self.assertEqual(worker.refresh_runs.active,run)
                     release.set()
                     deadline=time.monotonic()+2
                     while not done and time.monotonic()<deadline:APP.processEvents();time.sleep(.01)
                     self.assertEqual(done,[(run,True)])
                     self.assertTrue(ready[-1][2])
+                    self.assertEqual(ready[-1][0]['sources'][0]['items'][0]['id'],'10002')
+                    self.assertGreater(ready[-1][0]['checked'],cached['checked'])
+                    fetched.assert_called_once_with(etag='"cached"',timeout=10)
+                    self.assertIsNone(worker.refresh_runs.active)
                 finally:
                     release.set();worker.stop.set();worker.wake.set();self.assertTrue(worker.wait(2000))
+                self.assertIsNone(worker.request_refresh())
 
 
 if __name__=='__main__':unittest.main()

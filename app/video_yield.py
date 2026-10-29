@@ -54,11 +54,13 @@ class VideoYield(QObject):
         if frame and (not self.api.valid(frame['hwnd']) or self.api.foreground()!=frame['hwnd']):
             self.gate=VideoGate();self.frame=None;frame=None
         windows=self.windows()
-        overlaps=bool(frame and any(intersection(self.api.rect(int(w.winId())) or (0,0,0,0),frame['monitor'])>0 for w in windows))
+        # Detached panels and the character may be on different monitors.
+        overlapping=[w for w in windows if intersection(self.api.rect(int(w.winId())) or (0,0,0,0),frame['monitor'])>0] if frame else []
+        overlaps=bool(overlapping)
         indicator=getattr(getattr(self.pet,'bubble',None),'status_indicator',None)
         self.attention_override=bool(enabled and overlaps and indicator is not None and indicator.unread)
         yielding=bool(enabled and overlaps and not self.attention_override)
-        desired={int(w.winId()):w for w in windows} if yielding else {}
+        desired={int(w.winId()):w for w in overlapping} if yielding else {}
         # Restore the latest preference; never resurrect a deleted HWND.
         for hwnd,widget in list(self.changed.items()):
             if hwnd not in desired:

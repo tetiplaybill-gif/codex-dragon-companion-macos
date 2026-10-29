@@ -237,21 +237,21 @@ class SettingsDialog(QDialog):
     def build_page_5(self):
         pet=self.pet
         maintenance=self.tab('更新与维护')
-        self.section(maintenance,'软件更新','macOS 测试版暂不支持应用内更新，自动检查不会运行。' if MACOS else '检查 GitHub 公开稳定版；下载和安装由你主动发起。')
+        self.section(maintenance,'软件更新','本项目仅公开源码，请从仓库获取更新；程序自动检查、下载和安装均不运行。素材仍可按需下载。')
         self.check(maintenance,'update_checks','自动检查更新（不自动下载）')
+        self.fields['update_checks'].setEnabled(False)
         if hasattr(pet,'updates'):
             from update_widgets import UpdatePanel
             self.update_panel=UpdatePanel(pet.updates);maintenance.addRow(self.update_panel)
-        if MACOS:
-            from PySide6.QtGui import QDesktopServices
-            from PySide6.QtCore import QUrl
-            from platform_paths import app_root
-            releases=QPushButton('查看项目源码与更新')
-            releases.clicked.connect(lambda:QDesktopServices.openUrl(QUrl('https://github.com/tetiplaybill-gif/codex-dragon-companion-macos')))
-            maintenance.addRow(releases)
-            licenses=QPushButton('查看来源与组件许可')
-            licenses.clicked.connect(lambda:QDesktopServices.openUrl(QUrl.fromLocalFile(str(app_root()/'app/licenses'))))
-            maintenance.addRow(licenses)
+        from PySide6.QtGui import QDesktopServices
+        from PySide6.QtCore import QUrl
+        from platform_paths import app_root
+        releases=QPushButton('查看项目源码与更新')
+        releases.clicked.connect(lambda:QDesktopServices.openUrl(QUrl('https://github.com/tetiplaybill-gif/codex-dragon-companion-macos')))
+        maintenance.addRow(releases)
+        licenses=QPushButton('查看来源与组件许可')
+        licenses.clicked.connect(lambda:QDesktopServices.openUrl(QUrl.fromLocalFile(str(app_root()/'app/licenses'))))
+        maintenance.addRow(licenses)
         self.section(maintenance,'诊断与数据','维护操作立即执行；不属于设置草稿。')
         for title,slot in [('打开配置与聊天记录目录',pet.open_data),('导出诊断报告（不含对话和密钥）',pet.export_diagnostics),('备份设置（不含密钥与对话）',pet.backup_settings),('恢复设置备份',pet.restore_settings)]+([] if MACOS else [('清理历史版本与备份（先预览）',pet.cleanup_installations)]):
             button=QPushButton(title);button.clicked.connect(slot);maintenance.addRow(button)

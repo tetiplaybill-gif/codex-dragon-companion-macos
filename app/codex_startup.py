@@ -15,7 +15,8 @@ from platform_paths import data_dir,install_root,background_python,MACOS,NO_WIND
 def preference_path():return data_dir()/'codex-startup.json'
 def startup_path():
     if MACOS:from platform_paths import launch_agent;return launch_agent('codex-sync')[0]
-    return Path(os.environ['APPDATA'])/'Microsoft/Windows/Start Menu/Programs/Startup/BailongCodexSync.vbs'
+    from platform_paths import startup_folder
+    return startup_folder()/'BailongCodexSync.vbs'
 def read_json(path):
     try:
         value=json.loads(Path(path).read_text(encoding='utf-8'))
@@ -43,15 +44,20 @@ def register(exe=None):
     if MACOS:
         from platform_paths import launch_agent,write_launch_agent
         return write_launch_agent(path,launch_agent('codex-sync')[1],command+[WATCH_FLAG])
+    from platform_paths import app_root
+    directory=str(Path(exe).parent if exe is not None else app_root())
     command=subprocess.list2cmdline(command+[WATCH_FLAG])
-    script='Option Explicit\nDim s\nSet s=CreateObject("WScript.Shell")\ns.Run "'+command.replace('"','""')+'",0,False\n'
+    if any(c in command+directory for c in ('\0','\r','\n')):raise OSError('启动路径含有不支持的控制字符。')
+    script=('Option Explicit\nDim s\nSet s=CreateObject("WScript.Shell")\n'
+            's.CurrentDirectory = "'+directory.replace('"','""')+'"\n'
+            's.Run "'+command.replace('"','""')+'",0,False\n')
     path.parent.mkdir(parents=True,exist_ok=True)
     temp=path.with_suffix('.tmp');temp.write_text(script,encoding='utf-16');os.replace(temp,path)
 
 def ensure_watcher(executable=None):
     if enabled():
-        if MACOS and executable is None:
-            # Keep the login agent pointing at a moved .app or venv; identical bytes are rewritten harmlessly.
+        if executable is None and (MACOS or not getattr(sys,'frozen',False)):
+            # Refresh the login entry when the source checkout/venv or .app moved.
             try:register()
             except OSError:pass
         return spawn(([str(executable)] if executable else app_command())+[WATCH_FLAG])
@@ -63,7 +69,8 @@ def spawn(command):
         # Own session: survives the launching terminal or launchd job, like a detached Windows process.
         if getattr(sys,'frozen',False):env['PYINSTALLER_RESET_ENVIRONMENT']='1'
         return subprocess.Popen(command,close_fds=True,env=env,start_new_session=True,stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
-    return subprocess.Popen(command,creationflags=0x08000000,close_fds=True,env=env)
+    return subprocess.Popen(command,creationflags=0x08000000,close_fds=True,env=env,
+                            stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
 
 def stop_watchers(root=None):
     root=Path(root or install_root()).resolve();manifest=read_json(root/'installations.json')
@@ -122,7 +129,7 @@ def desktop_sessions():
 class LaunchGate:
     def __init__(self):self.sessions=set();self.absent=0
     def observe(self,current):
-        if current is None:return False
+        if current is None:self.absent=0;return False
         if not current:
             self.absent+=1
             if self.absent>=2:self.sessions=set()

@@ -1,0 +1,54 @@
+{
+  "scope": "Windows source-run dependency license documents only; no Windows executable redistributed here.",
+  "files": [
+    {
+      "file": "app/licenses/windows-source-dependencies/comtypes-1.4.17/LICENSE.txt",
+      "source_wheel": "comtypes-1.4.17-py3-none-any.whl",
+      "source_member": "comtypes-1.4.17.dist-info/licenses/LICENSE.txt",
+      "sha256": "3b1767f010980b46926b23bf0afce5d72f3359ee5e2b27baca71b9b4209ab383",
+      "bytes": 1273,
+      "verbatim": true
+    },
+    {
+      "file": "app/licenses/windows-source-dependencies/imageio-ffmpeg-0.6.0/LICENSE",
+      "source_wheel": "imageio_ffmpeg-0.6.0-py3-none-win_amd64.whl",
+      "source_member": "imageio_ffmpeg-0.6.0.dist-info/LICENSE",
+      "sha256": "eca73421d0c905a92e952a553d4d58919c5a507c2c2c76e3c0cf9ba408c299e4",
+      "bytes": 1317,
+      "verbatim": true
+    },
+    {
+      "file": "app/licenses/windows-source-dependencies/imageio-ffmpeg-0.6.0/UPSTREAM_BINARY_README.md",
+      "source_wheel": "imageio_ffmpeg-0.6.0-py3-none-win_amd64.whl",
+      "source_member": "imageio_ffmpeg/binaries/README.md",
+      "sha256": "b0d36dfb1ba1ea5ca873a6f6dbcc2295b7a7944aea875071d91a6aad1870e77d",
+      "bytes": 45,
+      "verbatim": true
+    },
+    {
+      "file": "app/licenses/windows-source-dependencies/imageio-ffmpeg-0.6.0/GPL-3.0.txt",
+      "source": "Unmodified GPLv3 text already retained from official PySide 6.9.2 source LICENSES/GPL-3.0-only.txt",
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+      "bytes": 35147,
+      "verbatim": true,
+      "coverage": "Generic license text only; not FFmpeg corresponding source or its component notices."
+    }
+  ],
+  "comtypes_existing_notice": "Existing app/licenses/comtypes-LICENSE.txt matches official 1.4.17 wheel text after newline normalization.",
+  "imageio_wrapper_license": "BSD-2-Clause",
+  "ffmpeg_binary": {
+    "wheel_member": "imageio_ffmpeg/binaries/ffmpeg-win-x86_64-v7.1.exe",
+    "bytes": 87638016,
+    "sha256": "2ce797a0f88d7f067180338fb227f7b1928ea727bd9a4d7a1d022f7c52af71a3",
+    "inspection": "Read-only archive and embedded printable strings; binary was not installed or executed on macOS.",
+    "embedded_version": "7.1-essentials_build-www.gyan.dev",
+    "embedded_configuration": "--enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband",
+    "embedded_license": "GNU GPL version 3 or (at your option) any later version",
+    "copied_into_repository": false
+  },
+  "gaps": [
+    "The selected wheel does not include a complete FFmpeg-specific license/notice set or corresponding source.",
+    "The complete source, patches, build recipe and licenses/notices for the statically enabled codecs and libraries have not been independently matched to this FFmpeg executable.",
+    "Generic GPLv3 text and Python wrapper BSD license do not close those binary redistribution gaps. Source-only dependency installation is not represented as a redistribution clearance for FFmpeg."
+  ]
+}

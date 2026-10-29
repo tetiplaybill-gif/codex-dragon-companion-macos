@@ -1,8 +1,9 @@
 """One background update operation, explicit installation, and silent periodic checks."""
 import sys,threading,time
 from PySide6.QtCore import QObject,QThread,QTimer,Signal
-# Public releases are Windows packages; a macOS build must never fetch or run them.
-UNSUPPORTED=sys.platform=='darwin'
+# This fork distributes source only. Upstream binaries are a different program
+# revision and must never replace this fork on either platform.
+UNSUPPORTED=True
 MAC_MESSAGE='本项目目前仅公开源码；请按仓库构建说明手动更新，应用内自动更新不可用。'
 from app_updates import check_release,stage_installer,version_tuple,prune_completed,UpdateError,UpdateCancelled,NoRelease,ensure_checksum
 
@@ -53,7 +54,7 @@ class UpdateController(QObject):
         self.timer=QTimer(self);self.timer.setInterval(6*3600*1000);self.timer.timeout.connect(self._automatic)
         self.initial=QTimer(self);self.initial.setSingleShot(True);self.initial.setInterval(15000);self.initial.timeout.connect(self._automatic)
         self.cleanup_timer=QTimer(self);self.cleanup_timer.setSingleShot(True);self.cleanup_timer.setInterval(60000);self.cleanup_timer.timeout.connect(self.cleanup)
-        if allow_auto:self.cleanup();self.cleanup_timer.start()
+        if self.allow_auto:self.cleanup();self.cleanup_timer.start()
     def cleanup(self):
         if not self.closing:threading.Thread(target=prune_completed,args=(self.cache,self.current),name='BailongUpdateCleanup',daemon=True).start()
     def snapshot(self):return dict(self.state)

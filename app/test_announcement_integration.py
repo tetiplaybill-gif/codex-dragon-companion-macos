@@ -1,5 +1,6 @@
 """No live API, account data or audio is used in these integration checks."""
 import tempfile
+import sys
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
@@ -81,6 +82,19 @@ class AnnouncementIntegrationTests(unittest.TestCase):
         with patch('announcement_sound.play_reset_sound') as sound:
             EnhancedPet.on_reset_feed(pet,{'source':'public_announcements','state':'ok'},alerts,True)
         sound.assert_not_called();pet.say.assert_not_called()
+
+    def test_windows_sound_failure_does_not_interrupt_the_ui_or_account_refresh(self):
+        pet = self.pet()
+        backend = SimpleNamespace(PlaySound=Mock(side_effect=RuntimeError('audio unavailable')),
+                                  SND_ALIAS=0x10000, SND_ASYNC=1, SND_NODEFAULT=2)
+        alerts = [{'kind':'reset','source_id':'codex_resets','title':'额度重置公告','text':'公开公告，不代表账户到账'}]
+        with patch('announcement_sound.sys.platform', 'win32'), \
+                patch.dict(sys.modules, {'winsound': backend}):
+            EnhancedPet.on_reset_feed(pet, {'source':'public_announcements','state':'ok'}, alerts, True)
+        backend.PlaySound.assert_called_once()
+        pet.say.assert_called_once()
+        pet.refresh_quota.assert_called_once_with()
+        pet.bubble.redraw.assert_called_once_with()
 
     def test_manual_x_cache_remains_separate_and_does_not_change_public_health(self):
         from x_announcements import AnnouncementMonitor

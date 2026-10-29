@@ -91,6 +91,38 @@ class ControllerTests(unittest.TestCase):
     def test_other_monitor_does_not_yield(self):
         self.api.rects={int(w.winId()):(2100,0,2300,300) for w in (self.pet,self.bubble)};self.enter()
         self.assertFalse(self.pet._video_yielded);self.assertFalse(self.api.calls)
+    def test_mixed_monitors_only_lower_the_window_on_the_video_monitor(self):
+        for overlapping,other in ((self.pet,self.bubble),(self.bubble,self.pet)):
+            with self.subTest(overlapping='pet' if overlapping is self.pet else 'bubble'):
+                self.api.rects={int(overlapping.winId()):(100,100,300,300),int(other.winId()):(2100,0,2300,300)}
+                self.api.calls.clear();self.enter()
+                self.assertTrue(self.pet._video_yielded)
+                self.assertEqual(set(self.guard.changed),{int(overlapping.winId())})
+                self.assertEqual(self.api.calls,[(int(overlapping.winId()),False,700)])
+                self.guard.accept(frame(fullscreen=False),1)
+    def test_moving_a_yielded_window_to_another_monitor_restores_its_pin(self):
+        self.enter();pet_id=int(self.pet.winId());bubble_id=int(self.bubble.winId())
+        self.api.rects[pet_id]=(2100,0,2300,300);self.api.calls.clear();self.guard.reconcile()
+        self.assertTrue(self.pet._video_yielded);self.assertEqual(set(self.guard.changed),{bubble_id})
+        self.assertIn((pet_id,True,0),self.api.calls)
+        self.assertIn((bubble_id,False,700),self.api.calls)
+        self.assertNotIn((pet_id,False,700),self.api.calls)
+    def test_mixed_monitor_unread_completion_restores_only_the_yielded_window(self):
+        pet_id=int(self.pet.winId());bubble_id=int(self.bubble.winId())
+        self.api.rects[pet_id]=(2100,0,2300,300);self.enter();self.api.calls.clear()
+        self.bubble.status_indicator.notify_complete(dict(session='test',turn='mixed'))
+        self.assertTrue(self.guard.attention_override);self.assertFalse(self.pet._video_yielded)
+        self.assertEqual(self.api.calls,[(bubble_id,True,0)]);self.assertFalse(self.guard.changed)
+        self.api.calls.clear();self.bubble.status_indicator.acknowledge()
+        self.assertTrue(self.pet._video_yielded);self.assertEqual(self.api.calls,[(bubble_id,False,700)])
+    def test_mixed_monitor_manual_unpin_is_preserved_after_completion_and_exit(self):
+        self.api.rects[int(self.pet.winId())]=(2100,0,2300,300);self.enter();self.api.calls.clear()
+        self.pet.settings['on_top']=False;self.guard.reconcile()
+        self.bubble.status_indicator.notify_complete(dict(session='test',turn='mixed'))
+        self.guard.accept(frame(fullscreen=False),1)
+        self.assertFalse(self.guard.attention_override);self.assertFalse(self.pet._video_yielded)
+        self.assertFalse(self.guard.changed);self.assertFalse(self.pet.settings['on_top'])
+        self.assertFalse(any(call[1] for call in self.api.calls))
     def test_delayed_result_after_foreground_change_is_ignored(self):
         self.guard.accept(frame(),0);self.api.focus=701;self.guard.accept(frame(),1)
         self.assertFalse(self.pet._video_yielded);self.assertFalse(self.api.calls)

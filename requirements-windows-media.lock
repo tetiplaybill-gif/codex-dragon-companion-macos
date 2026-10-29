@@ -1,0 +1,7 @@
+# Optional Windows WebM import only: install explicitly when needed. Not part of default dependencies or CI.
+# Official PyPI wheel SHA-256 and license scope: docs/windows-dependencies.json.
+--index-url https://pypi.org/simple
+--only-binary :all:
+--require-hashes
+
+imageio-ffmpeg==0.6.0 --hash=sha256:02fa47c83703c37df6bfe4896aab339013f62bf02c5ebf2dce6da56af04ffc0a

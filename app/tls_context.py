@@ -1,4 +1,4 @@
-"""Verified HTTPS contexts, including system roots in portable macOS builds."""
+"""Verified HTTPS using native defaults, plus roots for portable macOS builds."""
 from pathlib import Path
 import ssl
 import sys
@@ -13,6 +13,8 @@ def https_context():
     path need not exist on another Mac, leaving a valid but empty trust store.
     Load macOS roots in addition to defaults; malformed roots still fail closed.
     This does not change system trust, verification modes, or hostname checks.
+    On Windows, create_default_context loads Python's default Windows trust
+    stores; the macOS PEM is neither inspected nor loaded.
     """
     context = ssl.create_default_context()
     if sys.platform == 'darwin' and MACOS_CA_FILE.is_file():

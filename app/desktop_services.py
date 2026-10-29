@@ -12,12 +12,16 @@ from pathlib import Path
 from PIL import Image
 from desktop_core import atomic_json
 
+def _command_args():
+    from platform_paths import background_python
+    return [sys.executable] if getattr(sys,'frozen',False) else [str(background_python()),str(Path(__file__).with_name('enhanced.py'))]
+
 def command():
-    if getattr(sys,'frozen',False):return '"'+sys.executable+'"'
-    return '"'+str(Path(sys.executable).with_name('pythonw.exe'))+'" "'+str(Path(__file__).with_name('enhanced.py'))+'"'
+    return subprocess.list2cmdline(_command_args())
 
 def startup_paths():
-    root=Path(os.environ['APPDATA'])/'Microsoft/Windows/Start Menu/Programs/Startup'
+    from platform_paths import startup_folder
+    root=startup_folder()
     return root/'BailongEnhanced.vbs',root/'白龙桌宠增强版.lnk'
 
 def autostart_enabled():
@@ -27,7 +31,11 @@ def autostart_enabled():
         return launch_agent_args(launch_agent()[0])==app_command()
     vbs,link=startup_paths()
     if vbs.exists():
-        try:return command().replace('"','""') in vbs.read_text(encoding='utf-16')
+        try:
+            contents=vbs.read_text(encoding='utf-16')
+            # Older source entries quoted every path even without spaces.
+            variants=(command(),' '.join('"'+arg+'"' for arg in _command_args()))
+            return any(value.replace('"','""') in contents for value in variants)
         except (OSError,UnicodeError):return False
     # Existing shortcut is supported while upgrading the previous local build.
     if link.exists():
@@ -35,7 +43,8 @@ def autostart_enabled():
         literal=str(link).replace("'","''")
         script="$s=(New-Object -ComObject WScript.Shell).CreateShortcut('"+literal+"'); Write-Output $s.TargetPath; Write-Output $s.Arguments"
         result=subprocess.run(['powershell.exe','-NoProfile','-Command',script],capture_output=True,text=True,creationflags=0x08000000)
-        return str(Path(sys.executable).with_name('pythonw.exe')).lower() in result.stdout.lower() or (getattr(sys,'frozen',False) and sys.executable.lower() in result.stdout.lower())
+        from platform_paths import background_python
+        return str(background_python()).lower() in result.stdout.lower() or (getattr(sys,'frozen',False) and sys.executable.lower() in result.stdout.lower())
     return False
 
 def set_autostart(enabled):
