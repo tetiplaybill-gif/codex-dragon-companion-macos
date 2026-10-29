@@ -2,6 +2,10 @@
 
 本页面向 Windows 10 1809+ / Windows 11、x64 和 Python 3.12 64 位。本仓库只公开源码，不提供 EXE 或 MSI 安装包。当前为社区预览版，Windows 真实桌面的完整验收尚未完成；Windows Server 2022 上的 CI、导入与离屏界面测试不能代替 Windows 10/11 的实际使用验证。
 
+系统目标参考 [Qt 6.9 官方支持平台](https://doc.qt.io/archives/qt-6.9/supported-platforms.html)；Codex 桌面应用本身可能另有系统要求。Windows ARM64 和 32 位 Python 不在本锁文件的验证范围内。
+
+已在 Windows Server 2022 / Python 3.12.10 x64 上通过依赖导入、270 项测试（另 2 项跳过）和空白配置离屏启动。见 [CI 结果](https://github.com/tetiplaybill-gif/codex-dragon-companion-macos/actions/runs/40856296044) 与[验证边界](VALIDATION.md)。
+
 ## 准备与启动
 
 准备 Git 和 Python 3.12 x64，在 PowerShell 中执行：

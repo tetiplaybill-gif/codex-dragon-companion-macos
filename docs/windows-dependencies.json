@@ -213,9 +213,41 @@
   ],
   "verification": {
     "wheel_download_and_hash_check": "passed: the six default and one optional wheels independently match official PyPI SHA-256 and sizes; all were downloaded only into private verification storage",
-    "windows_install_and_execution": "pending Windows CI; not performed on macOS",
+    "windows_install_and_execution": "Passed on Windows CI: six locked default dependencies installed, pip check and native imports passed, 270 of 272 tests passed with two documented skips, and the offscreen application smoke test exited with code 0.",
     "default_resolution": "passed: offline pip download with cp312/win_amd64 resolved exactly six default packages with pinned hashes",
-    "optional_media_resolution": "passed: offline pip download with cp312/win_amd64 resolved only imageio-ffmpeg==0.6.0 with its pinned hash"
+    "optional_media_resolution": "passed: offline pip download with cp312/win_amd64 resolved only imageio-ffmpeg==0.6.0 with its pinned hash",
+    "windows_runtime_validation": {
+      "run_id": 40856296044,
+      "run_url": "https://github.com/tetiplaybill-gif/codex-dragon-companion-macos/actions/runs/40856296044",
+      "commit": "17f040d1b0dbc46023955b55a5e568b14cc01c7e",
+      "environment": {
+        "os": "Windows Server 2022",
+        "os_version": "10.0.20348",
+        "python": "CPython 3.12.10",
+        "architecture": "x64"
+      },
+      "default_dependencies": {
+        "lockfile": "requirements-windows.lock",
+        "package_count": 6,
+        "installation": "passed",
+        "pip_check": "passed",
+        "native_imports": "passed"
+      },
+      "unit_tests_observed": {
+        "total": 272,
+        "passed": 270,
+        "skipped": 2,
+        "failed": 0
+      },
+      "smoke_test": "passed: offscreen exit 0; expected source version; no startup entries created",
+      "full_ci_passed": true,
+      "optional_media": {
+        "lockfile": "requirements-windows-media.lock",
+        "installed_in_this_run": false,
+        "runtime_validated": false
+      },
+      "scope": "Default source dependencies, isolated automated tests, and monitor-free offscreen Qt startup on Windows Server 2022. No Windows 10/11 human desktop, live account, actual audio, or optional FFmpeg runtime validation."
+    }
   },
   "additional_runtime_dependencies_found": [],
   "excluded_build_tools": [

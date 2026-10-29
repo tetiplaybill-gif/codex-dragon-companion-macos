@@ -47,4 +47,4 @@ Python 运行时或依赖版本变化可能提高最低系统要求。已完成�
 
 ## 反馈
 
-请在 [Issues](https://github.com/tetiplaybill-gif/codex-dragon-companion-macos/issues) 提供应用版本、macOS 版本、芯片型号和复现步骤。截图请先遮住任务标题、回复内容、个人路径与账户信息；不要上传登录凭据、整个 Codex 数据目录或完整运行日志。
+请在 [Issues](https://github.com/tetiplaybill-gif/codex-dragon-companion-macos/issues) 提供应用版本、操作系统版本、处理器架构、Python 版本和复现步骤。截图请先遮住任务标题、回复内容、个人路径与账户信息；不要上传登录凭据、整个 Codex 数据目录或完整运行日志。

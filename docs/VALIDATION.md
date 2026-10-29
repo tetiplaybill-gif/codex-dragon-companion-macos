@@ -1,5 +1,26 @@
 # 源码与本地构建验证记录
 
+## Windows / macOS 社区源码
+
+当前源码版本：`1.0.1-community.2-preview.1`。记录日期：2026-10-29。只公开源码，没有新增成品 Release。
+
+Windows 自动化记录：[通过的 CI](https://github.com/tetiplaybill-gif/codex-dragon-companion-macos/actions/runs/40856296044)，对应代码提交 `17f040d1b0dbc46023955b55a5e568b14cc01c7e`。后续文档提交的运行结果可在 [Windows source checks](https://github.com/tetiplaybill-gif/codex-dragon-companion-macos/actions/workflows/windows-source.yml) 查看。
+
+| 检查 | 实际结果与边界 |
+|---|---|
+| Windows 环境 | GitHub 标准 `windows-2022` runner，Windows Server 2022 10.0.20348、CPython 3.12.10 x64 |
+| 依赖 | 六项默认锁定依赖的哈希校验安装、`pip check`、Qt/Pillow/psutil/msgspec/comtypes 导入通过；可选 FFmpeg 未安装或运行 |
+| Windows 单元与界面测试 | 272 项中 270 项通过、2 项跳过；跳过的是未公开保存的外部样本及不存在的 macOS 证书包测试 |
+| Windows 实际入口 | 空白隔离数据目录、Qt 离屏模式，`app/enhanced.py --smoke-test` 正常退出（0）；版本和解码错误字段检查通过，未创建启动项 |
+| Mac 源码回归 | CPython 3.12.16，本地相同测试集 272 项中 247 项通过、25 项按平台或缺少样本跳过；离屏启动退出 0 |
+| 测试覆盖 | 启动脚本引用及路径、启动门控、防重复、账户数据隔离、模拟全屏窗口、TLS 校验、两路公告解析/错误/缓存、首次静默和持久化去重、刷新协调 |
+
+自动化使用合成数据或模拟系统调用；Windows CI 没有接入真实 Codex 账号，没有在线获取两路公告，没有播放可听声音，也没有下载完整动画。离屏入口检查关闭监控线程，不代表真人桌面的启动联动已验收。Windows 10/11 上的开机监听、实际 Codex 进程与任务/额度、真实重置通知音、托盘、素材下载与长期动画、混合 DPI 和播放器行为仍需实机验证。Mac 已安装应用与用户配置在本轮保持不变。
+
+以下为较早 Mac 本地构建的独立记录，版本与范围不同，不能套用为 Windows 或当前源码的成品验收结果。
+
+## 较早 Mac 本地构建
+
 源码版本：`1.0.1-mac.2-preview.1`。记录日期：2026-10-29。
 
 本仓库仅公开源码。本页记录源码测试和自行生成的本地应用、磁盘映像的有限检查，不表示这些成品已公开交付。验证使用 Apple Silicon Mac、macOS 27.0.1，以及独立的空白应用数据目录；没有用真实账户数据替代缺失结果。通过界面正常退出的端到端验收仍未完成。
