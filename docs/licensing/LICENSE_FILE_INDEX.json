@@ -1,11 +1,10 @@
 {
-  "release_tag": "v1.0.1-mac.2-preview.1",
-  "scope": "Verbatim license text and attribution copies for this release preparation; not a complete binary SBOM.",
+  "scope": "Verbatim license texts and attribution copies retained in the source repository; not a binary-distribution claim or complete binary SBOM.",
   "files": [
     {
       "component": "runtime-license-or-publisher-notice",
       "file": "app/licenses/LICENSES_NOTICE.md",
-      "sha256": "df0152e687c603c1a1aefdab4130e7ba868b2948e7d818c16161b2a7e93de02c",
+      "sha256": "9c2e988d5439456d34f38d9483e6293c4b7e74c45b621a92e7355aad3977942d",
       "bytes": 5091,
       "scope": "bundled_text_or_sanitized_public_metadata"
     },
@@ -19,22 +18,22 @@
     {
       "component": "runtime-license-or-publisher-notice",
       "file": "app/licenses/PYTHON_RUNTIME_NOTICE.md",
-      "sha256": "a9afcf76e815d1eddf026ff228a935eb8a0a695c2d007a736a00a0962d702d0f",
-      "bytes": 1184,
+      "sha256": "470a5bf49d30b39cbb3755031e018da6f2a66a43060b8e194ee274ad2a11c244",
+      "bytes": 1214,
       "scope": "bundled_text_or_sanitized_public_metadata"
     },
     {
       "component": "runtime-license-or-publisher-notice",
       "file": "app/licenses/README.md",
-      "sha256": "2c11f93ec2eb28a33f18a10ca269254d96d23fcf8f80dc98934fee597c0f2cae",
-      "bytes": 493,
+      "sha256": "759dad58b05e96e29116163c06b86891c8cb803465a8e44a031c1a8bc470a1d2",
+      "bytes": 587,
       "scope": "bundled_text_or_sanitized_public_metadata"
     },
     {
       "component": "runtime-license-or-publisher-notice",
       "file": "app/licenses/SOURCE_DOWNLOADS.json",
-      "sha256": "85746326d0736f55fb303f5303a31181568c6ea540838b642e084ef821102926",
-      "bytes": 3688,
+      "sha256": "c3529a15b1b2d8d5e351b0fd9ecc66a2b8c954dec48f3ec60fa0c397968d3f9b",
+      "bytes": 3258,
       "scope": "bundled_text_or_sanitized_public_metadata"
     },
     {
@@ -194,8 +193,8 @@
     {
       "component": "runtime-license-or-publisher-notice",
       "file": "app/licenses/python-runtime/3.12.16/PROVENANCE.json",
-      "sha256": "2e3063f5b896be062a4f07f947c9d2734d154f5539e47d21c37ec238f4f20aa2",
-      "bytes": 5219,
+      "sha256": "aad34f0b5e184f6a8a235d2da15397e2e3c373dec9ee154d46bf8d5eb230d917",
+      "bytes": 5285,
       "scope": "bundled_text_or_sanitized_public_metadata"
     },
     {
@@ -2409,5 +2408,7 @@
       "scope": "build_tool_only"
     }
   ],
-  "python_runtime_version": "3.12.16"
+  "python_runtime_version": "3.12.16",
+  "source_baseline": "v1.0.1-mac.2-preview.1",
+  "delivery": "source_repository_only"
 }

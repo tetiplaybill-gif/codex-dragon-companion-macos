@@ -1,29 +1,29 @@
 # 第三方许可与对应源码
 
-本文件随 Codex Dragon Companion for macOS 的 `v1.0.1-mac.2-preview.1` 预览版交付。项目与角色的来源和授权说明见同目录 `PROJECT_NOTICE.md`。第三方库、字体、声音及其源码保留各自许可证；本项目没有把它们重新许可为统一的 MIT 或其他单一许可证。
+本文件属于 Codex Dragon Companion for macOS 源码仓库，说明 `v1.0.1-mac.2-preview.1` 开发基线的许可材料。本次仅公开代码，不包括成品应用或安装包。项目与角色的来源和授权说明见同目录 `PROJECT_NOTICE.md`。第三方库、字体、声音及其源码保留各自许可证；本项目没有把它们重新许可为统一的 MIT 或其他单一许可证。
 
 ## 如何查阅
 
-在 Finder 中对应用选择“显示包内容”，打开 `Contents/Resources/app/licenses/`，可直接阅读本文件及完整许可正文。源码仓库中对应位置为 `app/licenses/`。字体和声音的原始声明也保留在 `app/fonts/` 与 `app/sounds/`。
+源码仓库的 `app/licenses/` 可直接阅读完整许可。若自行构建应用，构建脚本将此目录作为应用资源；实际包含情况和可读取性须另行验证。字体和声音的原始声明也保留在 `app/fonts/` 与 `app/sounds/`。
 
-本版本的源码材料与二进制在同一 Release 提供，源码下载不另收费：
+代码与许可材料通过源码仓库提供：
 
-https://github.com/tetiplaybill-gif/codex-dragon-companion-macos/releases/tag/v1.0.1-mac.2-preview.1
+https://github.com/tetiplaybill-gif/codex-dragon-companion-macos
 
-各文件的精确名称、SHA-256、官方来源以及源码范围见同目录 `SOURCE_DOWNLOADS.json`，和仓库的 `docs/licensing/`。发布页的附件与校验清单应一起保留，不能把不明版本的项目首页当成对应源码。
+Qt 对应版本的官方源码地址、文件名、SHA-256，以及仓库内的源码范围见 `SOURCE_DOWNLOADS.json` 和仓库的 `docs/licensing/`。本仓库不承诺 Release 附件或成品下载；不能用不明版本的项目首页替代精确源码来源。
 
 ## Qt、PySide6 与 Shiboken
 
-本预览版使用 PySide6 Essentials 6.9.2 和 Shiboken6 6.9.2，包含 Qt 6.9.2 的动态库与插件。Qt、PySide6、Shiboken 的版权归 The Qt Company Ltd. 及相应贡献者；具体版权与第三方代码声明保留在随附原文中。
+本源码的构建依赖基线为 PySide6 Essentials 6.9.2 和 Shiboken6 6.9.2，对应 Qt 6.9.2。Qt、PySide6、Shiboken 的版权归 The Qt Company Ltd. 及相应贡献者；具体版权与第三方代码声明保留在随附原文中。
 
-此发行采用这些库可适用的 GNU LGPL v3 路线；没有声称取得 Qt 商业授权。LGPL v3 和其引用的 GPL v3 完整文本分别见：
+保留的开源许可材料包括这些库可适用的 GNU LGPL v3 路线；没有声称取得 Qt 商业授权。若另行分发构建产物，须满足其适用条件。LGPL v3 和其引用的 GPL v3 完整文本分别见：
 
 - `qt/pyside-6.9.2/LICENSES/LGPL-3.0-only.txt`
 - `qt/pyside-6.9.2/LICENSES/GPL-3.0-only.txt`
 
 各 Qt 模块也保留其 `LICENSES/`、`qt_attribution.json`、版权和引用许可正文。源码归档同时含其他平台、可选组件、测试及文档的许可选项；保留这些原文不表示本程序使用了全部组件或采用了商业/GPL 文档等所有可选条款。实际模块与来源的对应说明见 `docs/licensing/QT_SOURCE_MAP.md`。
 
-LGPL 库所授予的修改权利，以及为调试这些修改而进行逆向工程的权利，不受本项目的一般说明限制。该说明不扩大无关角色素材或应用代码的授权范围。应用采用外置共享库布局；兼容替换、构建和 macOS 签名的技术说明见仓库 `docs/licensing/LIBRARY_REPLACEMENT.md`。这些说明不要求关闭系统安全保护。
+LGPL 库所授予的修改权利，以及为调试这些修改而进行逆向工程的权利，不受本项目的一般说明限制。该说明不扩大无关角色素材或应用代码的授权范围。自行构建时的共享库布局、兼容替换和 macOS 签名注意事项见仓库 `docs/licensing/LIBRARY_REPLACEMENT.md`。这些说明不要求关闭系统安全保护。
 
 ## Python 包与构建时嵌入部分
 
@@ -41,7 +41,7 @@ Python 运行时的精确版本与完整许可另列于 `PYTHON_RUNTIME_NOTICE.m
 
 ## MPL 覆盖代码的源码
 
-本版本实际使用的 setuptools `_validate_pyproject` 源文件、明确命名的 schema 输入及完整 NOTICE，位于仓库 `third_party/setuptools-84.2.1/`，并作为 `setuptools-84.2.1-covered-sources.zip` 随上述同版本 Release 提供，不另收费。
+setuptools `_validate_pyproject` 的实际源文件、明确命名的 schema 输入及完整 NOTICE 已随 Git 保存在 `third_party/setuptools-84.2.1/`，可直接从源码仓库取得。
 
 这些文件保留原许可，未在本项目中修改。源码提供范围、版本证据和生成环境限制见该目录 README；它们不被本项目的其他许可说明限制。提供实际源文件不等于声称已验证完整生成器环境或实现位对位重建。
 

@@ -3,7 +3,7 @@ import sys,threading,time
 from PySide6.QtCore import QObject,QThread,QTimer,Signal
 # Public releases are Windows packages; a macOS build must never fetch or run them.
 UNSUPPORTED=sys.platform=='darwin'
-MAC_MESSAGE='macOS 预览版请从本项目下载页面手动更新；不会自动下载或覆盖应用。'
+MAC_MESSAGE='本项目目前仅公开源码；请按仓库构建说明手动更新，应用内自动更新不可用。'
 from app_updates import check_release,stage_installer,version_tuple,prune_completed,UpdateError,UpdateCancelled,NoRelease,ensure_checksum
 
 class UpdateJob(QThread):

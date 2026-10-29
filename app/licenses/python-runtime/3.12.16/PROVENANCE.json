@@ -127,5 +127,5 @@
     }
   ],
   "metadata_scope": "Selected public fields and complete license texts from the official full archive. Original build-machine paths are not reproduced. The full runtime can contain components not selected by the application bundler; this is not a per-binary SBOM.",
-  "preparation_verification": "The install_only interpreter and libpython bytes were verified against the corresponding full archive during runtime preparation. Final app bundle identity is checked separately by release validation."
+  "preparation_verification": "The install_only interpreter and libpython bytes were verified against the corresponding official full archive during build-environment preparation. This source publication does not distribute an application binary; any future built app requires separate validation."
 }

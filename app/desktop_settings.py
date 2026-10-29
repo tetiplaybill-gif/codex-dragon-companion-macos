@@ -246,8 +246,8 @@ class SettingsDialog(QDialog):
             from PySide6.QtGui import QDesktopServices
             from PySide6.QtCore import QUrl
             from platform_paths import app_root
-            releases=QPushButton('前往本项目下载页面')
-            releases.clicked.connect(lambda:QDesktopServices.openUrl(QUrl('https://github.com/tetiplaybill-gif/codex-dragon-companion-macos/releases')))
+            releases=QPushButton('查看项目源码与更新')
+            releases.clicked.connect(lambda:QDesktopServices.openUrl(QUrl('https://github.com/tetiplaybill-gif/codex-dragon-companion-macos')))
             maintenance.addRow(releases)
             licenses=QPushButton('查看来源与组件许可')
             licenses.clicked.connect(lambda:QDesktopServices.openUrl(QUrl.fromLocalFile(str(app_root()/'app/licenses'))))

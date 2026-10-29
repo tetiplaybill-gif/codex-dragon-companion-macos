@@ -1,17 +1,17 @@
 # Qt 6.9.2 与对应源码
 
-本版本使用 PySide6 Essentials / Shiboken6 6.9.2，Qt framework 的版本为 6.9.2。采用这些组件可适用的 LGPL v3 许可路线，并随应用提供 LGPL v3、GPL v3、适用版权及第三方声明。
+本源码的构建基线为 PySide6 Essentials / Shiboken6 6.9.2，对应 Qt 6.9.2。仓库保留适用的 LGPL v3、GPL v3、版权及第三方声明。此表说明来源关系，不表示本仓库已经分发应用二进制。
 
-| 官方源码包 | 应用使用的组件范围 |
+| 官方源码包 | 构建基线对应的组件范围 |
 |---|---|
 | `qtbase-everywhere-src-6.9.2.tar.xz` | QtCore、QtGui、QtWidgets、QtNetwork、QtDBus，以及相关 macOS 平台、样式、TLS、网络信息和基础图像插件。 |
 | `qtsvg-everywhere-src-6.9.2.tar.xz` | QtSvg、SVG 图像插件和 SVG 图标引擎。 |
 | `qtimageformats-everywhere-src-6.9.2.tar.xz` | ICNS、macOS HEIF/JPEG2000、TGA、TIFF、WBMP、WebP 等附加图像插件。 |
 | `pyside-setup-everywhere-src-6.9.2.tar.xz` | PySide6 Python 绑定、libpyside6、Shiboken6/libshiboken6 及其构建工具和脚本。 |
 
-四份未修改的官方源码归档作为本版本 Release 附件提供；官方原始下载地址、附件链接和 SHA-256 见 [SOURCE_DOWNLOADS.json](SOURCE_DOWNLOADS.json)。SHA 校验对应已取得的官方档案；它不构成由源码位对位重建上游 wheel 的证明。
+四份未修改的官方源码归档通过 Qt 官方原始地址取得；已核对的原始下载地址和 SHA-256 见 [SOURCE_DOWNLOADS.json](SOURCE_DOWNLOADS.json)。SHA 校验对应已取得的官方档案；它不构成由源码位对位重建上游 wheel 的证明。
 
-许可证和来源材料的应用内目录为 `app/licenses/qt/`：QtBase 215 份、QtSvg 10 份、QtImageFormats 13 份、PySide 12 份版本匹配材料。保留完整 `LICENSES`、源码第三方 attribution 及其引用正文，便于查看原始版权和条件。
+许可证和来源材料在源码仓库的目录为 `app/licenses/qt/`：QtBase 215 份、QtSvg 10 份、QtImageFormats 13 份、PySide 12 份版本匹配材料。保留完整 `LICENSES`、源码第三方 attribution 及其引用正文，便于查看原始版权和条件。
 
 例如 QtSvg 保存 XSVG 声明，QtImageFormats 保存 libtiff/libwebp 的版权与许可，PySide 保存 Shiboken 引用的 Python/PSF 材料。源码中的“可选”“系统库未找到时使用”等条件仍然适用；不能仅根据源码归档存在某库，断言 wheel 实际使用了那个内嵌版本。
 
