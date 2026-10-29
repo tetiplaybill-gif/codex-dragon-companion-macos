@@ -1,0 +1,84 @@
+{
+  "package": "setuptools",
+  "version": "84.2.1",
+  "project_url": "https://pypi.org/project/setuptools/84.2.1/",
+  "files": [
+    {
+      "path": "setuptools/config/_validate_pyproject/__init__.py",
+      "sha256": "767a7a4fb78f3f5479cf83ae0bb15dd9d905948aed21f8b351fbe91893fa9f3d",
+      "bytes": 1042,
+      "installed_wheel_RECORD_sha256_matches": true
+    },
+    {
+      "path": "setuptools/config/_validate_pyproject/error_reporting.py",
+      "sha256": "e6319b720ef3402122100f1f02295291a5e711f5f20fb7eae421be3a49856669",
+      "bytes": 11803,
+      "installed_wheel_RECORD_sha256_matches": true
+    },
+    {
+      "path": "setuptools/config/_validate_pyproject/extra_validations.py",
+      "sha256": "9509eee7001204bf220d3a0e0e9c39b17db591ebf4d7f3e35081a576ed69ae86",
+      "bytes": 5066,
+      "installed_wheel_RECORD_sha256_matches": true
+    },
+    {
+      "path": "setuptools/config/_validate_pyproject/fastjsonschema_exceptions.py",
+      "sha256": "c3be3d260a8a8bc72504570e6dd71b655aac985e2827f401ca16754866d414dc",
+      "bytes": 1612,
+      "installed_wheel_RECORD_sha256_matches": true
+    },
+    {
+      "path": "setuptools/config/_validate_pyproject/fastjsonschema_validations.py",
+      "sha256": "5e3321f6cf5ecc4cea33dca86782a8510ee30a81c0aac465f8a49fdf4465831a",
+      "bytes": 365819,
+      "installed_wheel_RECORD_sha256_matches": true
+    },
+    {
+      "path": "setuptools/config/_validate_pyproject/formats.py",
+      "sha256": "2cd45a8e57ae66dc8ff015a131c6ee03dd803e9a5d888b6912911ea828c0e784",
+      "bytes": 15373,
+      "installed_wheel_RECORD_sha256_matches": true
+    },
+    {
+      "path": "setuptools/config/_validate_pyproject/NOTICE",
+      "sha256": "09c9bcea95ca086f8bc5bed174e40bc835b297d40fb5f86bbbb570fe0a5581a7",
+      "bytes": 18737,
+      "installed_wheel_RECORD_sha256_matches": true
+    },
+    {
+      "path": "setuptools/config/distutils.schema.json",
+      "sha256": "4dca77da44678703911b0ffda7a1848b4f258f6875e6d411cce6016f31a67015",
+      "bytes": 972,
+      "installed_wheel_RECORD_sha256_matches": true
+    },
+    {
+      "path": "setuptools/config/setuptools.schema.json",
+      "sha256": "069ead4f046f4b2f7afdd09de4ea8a4e27ee21c4d639de700c6442af0601ce34",
+      "bytes": 16047,
+      "installed_wheel_RECORD_sha256_matches": true
+    },
+    {
+      "path": "setuptools/config/NOTICE",
+      "sha256": "2dddf08818297a3b89d43d95ff659d8da85741108c9136dfa3a4d856c0623bd8",
+      "bytes": 493,
+      "installed_wheel_RECORD_sha256_matches": true
+    },
+    {
+      "path": "setuptools-84.2.1.dist-info/licenses/LICENSE",
+      "sha256": "86da0f01aeae46348a3c3d465195dc1ceccde79f79e87769a64b8da04b2a4741",
+      "bytes": 1023,
+      "installed_wheel_RECORD_sha256_matches": true
+    }
+  ],
+  "copy_status": "Unmodified installed source files and named generator inputs; all match package RECORD hashes.",
+  "generator_command_recorded_by_upstream_notice": "python -m validate_pyproject.pre_compile --output-dir=setuptools/config/_validate_pyproject --enable-plugins setuptools distutils --very-verbose -t distutils=setuptools/config/distutils.schema.json -t setuptools=setuptools/config/setuptools.schema.json",
+  "command_executed_for_this_release": false,
+  "generated_validator_VERSION_literal": "2.21.2",
+  "validate_pyproject_exact_upstream_version": null,
+  "source_scope": "Six installed runtime Python source modules, their NOTICE, two named schema inputs, config NOTICE and setuptools LICENSE.",
+  "limits": [
+    "The VERSION literal identifies the generated validator marker; it does not independently verify the version of every embedded upstream fragment.",
+    "The exact validate-pyproject version and complete generator/plugin environment were not recorded in the installed package.",
+    "This collection does not claim that the complete upstream generator preferred-source environment or bit-for-bit regeneration has been verified."
+  ]
+}

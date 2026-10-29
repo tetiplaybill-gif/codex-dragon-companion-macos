@@ -1,0 +1,131 @@
+{
+  "python_version": "3.12.16",
+  "distribution": "Astral python-build-standalone",
+  "release": "20261026",
+  "target": "aarch64-apple-darwin",
+  "build_options": "pgo+lto",
+  "build_source_commit": "fa506e0858ac9f2cc5b289c137b888a2aa24d1ee",
+  "build_source_url": "https://github.com/astral-sh/python-build-standalone/tree/fa506e0858ac9f2cc5b289c137b888a2aa24d1ee",
+  "archives": [
+    {
+      "filename": "cpython-3.12.16+20261026-aarch64-apple-darwin-install_only.tar.gz",
+      "upstream_url": "https://github.com/astral-sh/python-build-standalone/releases/download/20261026/cpython-3.12.16%2B20261026-aarch64-apple-darwin-install_only.tar.gz",
+      "sha256": "fbf4afef53c2a6b72bb741bc06d5671a9dfaf87bd84e5aa73ac9b3d0d589f14e",
+      "bytes": 25172086
+    },
+    {
+      "filename": "cpython-3.12.16+20261026-aarch64-apple-darwin-pgo+lto-full.tar.zst",
+      "upstream_url": "https://github.com/astral-sh/python-build-standalone/releases/download/20261026/cpython-3.12.16%2B20261026-aarch64-apple-darwin-pgo%2Blto-full.tar.zst",
+      "sha256": "016758f4881e5f71d63eddfbcdd53f25c5a9152435a863e4dc0770758eae32c3",
+      "bytes": 57660205
+    }
+  ],
+  "upstream_metadata_member": "python/PYTHON.json",
+  "upstream_metadata_sha256": "dfc38df39b46bc1337abc4b3ff160e5ef4ca16f13dedb4c412a770ecb3fb8a36",
+  "metadata_summary_file": "PYTHON_METADATA_SUMMARY.json",
+  "metadata_summary_sha256": "9010afeab842ecc50cdbac13398a8ca1cce34a3f86563298aa885b775b10897e",
+  "licenses": [
+    {
+      "file": "licenses/LICENSE.bdb.txt",
+      "sha256": "3bdff06e69991c94664f2ef5c5f8096f60b7dbec071756ea6cc26b445e06ec5b",
+      "bytes": 7293
+    },
+    {
+      "file": "licenses/LICENSE.bzip2.txt",
+      "sha256": "1f38bbc7caacafd65169276d759c0d88c991b753b643ce35d0e45ea1971dd441",
+      "bytes": 1743
+    },
+    {
+      "file": "licenses/LICENSE.cpython.txt",
+      "sha256": "86e61415828a8b5b06ec8d024e6f086ce155a8b85fd0c419c0ba4dc004e74fdd",
+      "bytes": 36164
+    },
+    {
+      "file": "licenses/LICENSE.expat.txt",
+      "sha256": "122f2c27000472a201d337b9b31f7eb2b52d091b02857061a8880371612d9534",
+      "bytes": 1144
+    },
+    {
+      "file": "licenses/LICENSE.libX11.txt",
+      "sha256": "2daec087a88e7c9b8082557cdeebad5bbb8155a4137472f0b22e269cd99d0c1e",
+      "bytes": 47018
+    },
+    {
+      "file": "licenses/LICENSE.libXau.txt",
+      "sha256": "56abe29bb1d9806a9e04fa9f80fed2c0f18027594df3f098148d814aef6bddfa",
+      "bytes": 1148
+    },
+    {
+      "file": "licenses/LICENSE.libedit.txt",
+      "sha256": "29cea33c32bbc9785142386377915612a2fa786482c46843383384aded2e09b1",
+      "bytes": 1614
+    },
+    {
+      "file": "licenses/LICENSE.libffi.txt",
+      "sha256": "deaf3a42effb551a5b140fa9afefed183a27f1341c6d1bf430d106a5e6931fc0",
+      "bytes": 1132
+    },
+    {
+      "file": "licenses/LICENSE.liblzma.txt",
+      "sha256": "9a4062de0a2c388a98cf35a35d348b62fa97c838a71c3c28ee1a2d7d0a565b02",
+      "bytes": 660
+    },
+    {
+      "file": "licenses/LICENSE.libuuid.txt",
+      "sha256": "122ee1f7e258f2c3c0e538a75c037684f420454bf3850ddc74ce750bbf5fe86b",
+      "bytes": 1432
+    },
+    {
+      "file": "licenses/LICENSE.libxcb.txt",
+      "sha256": "c5ffbfeaa501071ceeb97b7de2c0d703fdaa35de01c0fb6cbac1c28453a3e9fd",
+      "bytes": 1337
+    },
+    {
+      "file": "licenses/LICENSE.mpdecimal.txt",
+      "sha256": "669512af7219f58be03a398766d7c9da11a3b3df9d3f05cb74c5ceca25c8da3b",
+      "bytes": 1284
+    },
+    {
+      "file": "licenses/LICENSE.ncurses.txt",
+      "sha256": "87a4c4442337b8968ef956031c406b74f9cb7149b7ba87311bdaba534816201c",
+      "bytes": 1447
+    },
+    {
+      "file": "licenses/LICENSE.openssl-3.txt",
+      "sha256": "7d5450cb2d142651b8afa315b5f238efc805dad827d91ba367d8516bc9d49e7a",
+      "bytes": 10175
+    },
+    {
+      "file": "licenses/LICENSE.sqlite.txt",
+      "sha256": "38bef3d28b24f145ea293bd3b6eb4b20396982abc8303128fb493986ea5bc719",
+      "bytes": 1481
+    },
+    {
+      "file": "licenses/LICENSE.tcl.txt",
+      "sha256": "c0a69a2bfd757361ec7e6143973b103c90409316b49e9c88db26ad6388e79f16",
+      "bytes": 2255
+    },
+    {
+      "file": "licenses/LICENSE.tix.txt",
+      "sha256": "3ac5cdd0bef6c43ce34c6a7ced452081d9e5a0bf94082b9f9147d23ec9e214f5",
+      "bytes": 2826
+    },
+    {
+      "file": "licenses/LICENSE.zlib-ng.txt",
+      "sha256": "6c9f0d975b41afaa34d22f55bb8986ce69e5cb7ad327cb2b28820cd425edf5ee",
+      "bytes": 867
+    },
+    {
+      "file": "licenses/LICENSE.zlib.txt",
+      "sha256": "818922b2620f12801a12bf78e399644a30990e66824abd8ca8ec24d451d6f92c",
+      "bytes": 995
+    },
+    {
+      "file": "licenses/LICENSE.zstd.txt",
+      "sha256": "7055266497633c9025b777c78eb7235af13922117480ed5c674677adc381c9d8",
+      "bytes": 1549
+    }
+  ],
+  "metadata_scope": "Selected public fields and complete license texts from the official full archive. Original build-machine paths are not reproduced. The full runtime can contain components not selected by the application bundler; this is not a per-binary SBOM.",
+  "preparation_verification": "The install_only interpreter and libpython bytes were verified against the corresponding full archive during runtime preparation. Final app bundle identity is checked separately by release validation."
+}

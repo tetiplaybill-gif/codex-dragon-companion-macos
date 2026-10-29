@@ -1,0 +1,20 @@
+{
+  "python_version": "3.12.16",
+  "target_triple": "aarch64-apple-darwin",
+  "build_options": "pgo+lto",
+  "optimizations": "pgo+lto",
+  "apple_sdk_canonical_name": "macosx15.0",
+  "apple_sdk_deployment_target": "11.0",
+  "apple_sdk_platform": "macosx",
+  "apple_sdk_version": "15.0",
+  "python_abi_tag": "",
+  "python_tag": "cp312",
+  "python_symbol_visibility": "global-default",
+  "libpython_link_mode": "shared",
+  "license_path": "licenses/LICENSE.cpython.txt",
+  "licenses": [
+    "Python-2.0",
+    "CNRI-Python"
+  ],
+  "scope": "Selected public metadata fields only; original upstream build paths are not reproduced."
+}

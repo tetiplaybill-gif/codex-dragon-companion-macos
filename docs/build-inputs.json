@@ -1,0 +1,75 @@
+{
+  "runtime_version": "3.12.16",
+  "architecture": "aarch64-apple-darwin",
+  "provider": "Astral python-build-standalone",
+  "release_url": "https://github.com/astral-sh/python-build-standalone/releases/tag/20261026",
+  "release_tag": "20261026",
+  "build_recipe_commit": "fa506e0858ac9f2cc5b289c137b888a2aa24d1ee",
+  "github_release_immutable": true,
+  "release_archives": [
+    {
+      "id": 678574498,
+      "name": "cpython-3.12.16+20261026-aarch64-apple-darwin-install_only.tar.gz",
+      "size": 25172086,
+      "digest": "sha256:fbf4afef53c2a6b72bb741bc06d5671a9dfaf87bd84e5aa73ac9b3d0d589f14e",
+      "browser_download_url": "https://github.com/astral-sh/python-build-standalone/releases/download/20261026/cpython-3.12.16%2B20261026-aarch64-apple-darwin-install_only.tar.gz",
+      "verified_sha256": "fbf4afef53c2a6b72bb741bc06d5671a9dfaf87bd84e5aa73ac9b3d0d589f14e",
+      "verified_size": 25172086
+    },
+    {
+      "id": 678574521,
+      "name": "cpython-3.12.16+20261026-aarch64-apple-darwin-pgo+lto-full.tar.zst",
+      "size": 57660205,
+      "digest": "sha256:016758f4881e5f71d63eddfbcdd53f25c5a9152435a863e4dc0770758eae32c3",
+      "browser_download_url": "https://github.com/astral-sh/python-build-standalone/releases/download/20261026/cpython-3.12.16%2B20261026-aarch64-apple-darwin-pgo%2Blto-full.tar.zst",
+      "verified_sha256": "016758f4881e5f71d63eddfbcdd53f25c5a9152435a863e4dc0770758eae32c3",
+      "verified_size": 57660205
+    }
+  ],
+  "build_recipe_source_archive": {
+    "url": "https://api.github.com/repos/astral-sh/python-build-standalone/tarball/20261026",
+    "commit": "fa506e0858ac9f2cc5b289c137b888a2aa24d1ee",
+    "tag": "20261026",
+    "sha256": "60154130ce2ea70831b1ed43609c18b4213b54bfd8a8c42684960a5b094dc3c9",
+    "size": 465386,
+    "checksum_scope": "Locally recorded GitHub source-archive digest; immutable release tag/commit supplied by GitHub API."
+  },
+  "upstream_cpython_source_records": [
+    {
+      "key": "/cpython-3.12",
+      "record": {
+        "url": "https://www.python.org/ftp/python/3.12.16/Python-3.12.16.tar.xz",
+        "size": 20839652,
+        "sha256": "b5796915dc45ff745cfb4e990a7e7c93d6f546328a102ce31448d69ebc37575c",
+        "version": "3.12.16",
+        "licenses": [
+          "Python-2.0",
+          "CNRI-Python"
+        ],
+        "license_file": "LICENSE.cpython.txt",
+        "python_tag": "cp312"
+      }
+    }
+  ],
+  "requirements_lock_sha256": "93cee4db0dc629ea192ae742fee967873d11320e162fd7006667bfef05ce55ae",
+  "packages": {
+    "setuptools": "84.2.1",
+    "pyinstaller-hooks-contrib": "2026.9",
+    "msgspec": "0.22.0",
+    "packaging": "26.3",
+    "altgraph": "0.17.5",
+    "pyinstaller": "6.22.3",
+    "psutil": "7.0.0",
+    "pillow": "12.0.0",
+    "macholib": "1.16.4",
+    "shiboken6": "6.9.2",
+    "pip": "26.2.2",
+    "PySide6_Essentials": "6.9.2"
+  },
+  "qt_runtime": "6.9.2",
+  "openssl": "OpenSSL 3.5.9 29 Sep 2026",
+  "limits": [
+    "Runtime and dependency wheels were downloaded from the recorded public sources and hash verified. This records the binary inputs; it does not claim byte-identical rebuilding from CPython or Qt source."
+  ],
+  "requirements_lock": "requirements-macos.lock"
+}
