@@ -2,7 +2,7 @@
 import sys
 from types import SimpleNamespace
 import unittest
-from unittest.mock import Mock, patch
+from unittest.mock import MagicMock, Mock, patch
 
 import announcement_sound as sound
 
@@ -41,11 +41,18 @@ class AnnouncementSoundTests(unittest.TestCase):
         process.assert_not_called()
 
     def test_macos_keeps_its_existing_local_sound_command(self):
+        # sys.platform does not change the host's pathlib flavour on Windows.
+        # Model the Mac path as well as its filesystem probe in this simulation.
+        sound_path = MagicMock()
+        sound_path.is_file.return_value = True
+        sound_path.__str__.return_value = '/System/Library/Sounds/Glass.aiff'
         with patch.object(sound.sys, 'platform', 'darwin'), \
-                patch.object(sound.Path, 'is_file', return_value=True), \
+                patch.object(sound, 'Path', return_value=sound_path) as path_factory, \
                 patch.object(sound.subprocess, 'Popen') as process, \
                 patch.dict(sys.modules, {'winsound': None}):
             self.assertTrue(sound.play_reset_sound())
+        path_factory.assert_called_once_with('/System/Library/Sounds/Glass.aiff')
+        sound_path.is_file.assert_called_once_with()
         process.assert_called_once_with(['/usr/bin/afplay', '/System/Library/Sounds/Glass.aiff'],
             stdin=sound.subprocess.DEVNULL, stdout=sound.subprocess.DEVNULL,
             stderr=sound.subprocess.DEVNULL, close_fds=True)

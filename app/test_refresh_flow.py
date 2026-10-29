@@ -181,7 +181,10 @@ class WorkerTests(unittest.TestCase):
         from public_announcements import FetchResult
         with tempfile.TemporaryDirectory() as folder, \
                 patch('urllib.request.build_opener',side_effect=AssertionError('no network')):
-            checked=time.time()
+            # The cache was checked one minute ago and is still inside its
+            # 900-second deadline. Distinct baselines do not depend on Windows
+            # wall-clock resolution between two immediately adjacent calls.
+            checked=time.time()-60
             old=dict(id='10001',text='Earlier public announcement',published=checked-1,
                      kind='reset',url='https://codex-resets.com/',implementation='reported_completed')
             provider=SimpleNamespace(id='codex_resets',label='Offline fixture',available=True,
